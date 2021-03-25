@@ -2,19 +2,62 @@
 #include <chrono>
 #include <vector>
 #include <iomanip>
+#include <fstream>
+#include <unordered_map>
+#include <string>
 
 #include "spdlog/spdlog.h"
 
+// TODO:
+// 1. print msg for different log_level
+// 2. set_level to limit the output when the level is lower than current level
+// 3.
+
+// Advanced:
+// 1. Able to set config (formait, date/time, level)
 
 namespace mylog 
 {
+    // log level
+    enum level_enum {
+        trace,
+        debug,
+        info,
+        warning,
+        error,
+        crtical,
+        off
+    };
+
     class clog {
     private:
     public:
 
-        template <typename T>
-        static void info(T msg) {
+        // TODO: Get mutiple args using variadic template
+        template <typename T, typename... Args>
+        static void info(std::string msg,T arg) {
+            int x = 0;
+            std::string c, log_message;
+
+            for (int i = 0;i < msg.length();i++) 
+            {
+                if (msg[i] == '{') 
+                {
+                    while (++i != msg.length()) {
+                        if (msg[i] == '}') break;
+                    }
+                    // type check
+                    if (typeid(arg) == typeid(const char*) || typeid(arg) == typeid(char))
+                        log_message += arg;
+                    else
+                        log_message += std::to_string(arg);
+                    continue;
+                }
+                log_message += msg[i];
+            }
+
             std::cout << msg << std::endl;
+            std::cout << log_message << std::endl;
         }
 
         static void display_time() {
@@ -41,6 +84,14 @@ namespace mylog
             std::cout << "Elapsed time: " << ms << "ms\n";
             return ms;
         }
+
+        void write_log_to_file(std::string msg) {
+            std::ofstream file("log.txt",std::ios::app);
+            if (file.is_open())
+                file << msg << std::endl;
+            else
+                std::cout << "Failed log to file.\n";
+        }
  
     };
 }
@@ -52,10 +103,10 @@ void sortV(std::vector<int> v) {
 
 int main() {
     std::vector<int> v{ 5,63,2,1,68,3 };
-    mylog::clog::info("Hello");
+    mylog::clog::info("Hello world {0} {1}", 'a');
     mylog::clog::elapsed_time(sortV,v);
     mylog::clog::display_time();
-
+        
     spdlog::info("Hello world!");
    
     return 0;
