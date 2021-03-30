@@ -4,19 +4,19 @@ namespace qlog {
 
 	enum class level { debug, info, warn, error, critical };
 
-	void log(level lvl = level::debug, const char* msg = "" , const char* arg = "");
+	void log(level lvl = level::debug, std::string msg = "" , std::string arg = "");
 
-	const char* get_level(level lvl);
+	std::string get_level(level lvl);
 
-	void debug(const char* msg, const char* arg = "");
+	void debug(std::string msg, std::string arg = "");
 
-	void info(const char* msg, const char* arg = "");
+	void info(std::string msg, std::string arg = "");
 
-	void warn(const char* msg, const char* arg = "");
+	void warn(std::string msg, std::string arg = "");
 
-	void error(const char* msg, const char* arg = "");
+	void error(std::string msg, std::string arg = "");
 
-	void critical(const char* msg, const char* arg = "");
+	void critical(std::string msg, std::string arg = "");
 
 
 };
