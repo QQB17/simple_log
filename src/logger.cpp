@@ -1,13 +1,18 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include "logger.h"
 #include "log_time.h"
+#include "log_file.h"
 
 void qlog::log(level lvl , std::string msg, std::string arg )  {
 	std::string cur_lvl = get_level(lvl);
 	log_time time;
 	auto c_time = time.display_time();
-	std::cout  << c_time << "[" << cur_lvl << "]\t" << msg  << " "  << arg << std::endl;
+	std::stringstream ss;
+	ss << c_time << "\t[" << cur_lvl << "]\t" << msg << " " << arg << '\n';
+	std::cout << ss.str();
+	log_file::write_log(ss.str());
 }
 
 std::string qlog::get_level(level lvl) {
