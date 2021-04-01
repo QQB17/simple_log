@@ -5,8 +5,10 @@
 #include "log_time.h"
 #include "log_file.h"
 
-void qlog::log(level lvl , std::string msg, std::string arg )  {
-	std::string cur_lvl = get_level(lvl);
+
+void qlog::log(log_level::level lvl , std::string msg, std::string arg )  {
+	if (lvl < log_level::default_level) return;
+	std::string cur_lvl = log_level::get_level(lvl);
 	log_time time;
 	auto c_time = time.display_time();
 	std::stringstream ss;
@@ -15,45 +17,23 @@ void qlog::log(level lvl , std::string msg, std::string arg )  {
 	log_file::write_log(ss.str());
 }
 
-std::string qlog::get_level(level lvl) {
-	switch (lvl)
-	{
-	case qlog::level::debug:
-		return "DEBUG";
-		break;
-	case qlog::level::info:
-		return "INFO";
-		break;
-	case qlog::level::warn:
-		return "WARN";
-		break;
-	case qlog::level::error:
-		return "ERROR";
-		break;
-	case qlog::level::critical:
-		return "CRIT";
-		break;
-	default:
-		break;
-	}
-}
 
 void qlog::debug(std::string msg, std::string arg) {
-	qlog::log(level::debug, msg, arg);
+	qlog::log(log_level::level::debug, msg, arg);
 }
 
 void qlog::info(std::string msg, std::string arg ) {
-	qlog::log(level::info, msg, arg);
+	qlog::log(log_level::level::info, msg, arg);
 }
 
 void qlog::warn(std::string msg, std::string arg) {
-	qlog::log(level::warn, msg, arg);
+	qlog::log(log_level::level::warn, msg, arg);
 }
 
 void qlog::error(std::string msg, std::string arg) {
-	qlog::log(level::error, msg, arg);
+	qlog::log(log_level::level::error, msg, arg);
 }
 
 void qlog::critical(std::string msg, std::string arg) {
-	qlog::log(level::critical, msg, arg);
+	qlog::log(log_level::level::critical, msg, arg);
 }

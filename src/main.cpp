@@ -2,13 +2,12 @@
 #include "logger.h"
 
 int main() {
+    log_level::set_level(log_level::level::info);
     qlog::debug("hello");
     qlog::info("Information");
     qlog::error("Error");
     qlog::critical("Critical operator: ", "set function in header file");
-    qlog::log(qlog::level::debug, "Debuging...");
-    qlog::log(qlog::level::debug, "Something wrong with: " ,"logger");
-     
+    qlog::log(log_level::level::debug ,"Debuging..."); 
     
     return 0;
 }

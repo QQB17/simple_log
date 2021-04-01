@@ -1,12 +1,12 @@
 #pragma once
 
-namespace qlog {
+#include "log_level.h"
 
-	enum class level { debug, info, warn, error, critical };
+namespace qlog { 
 
-	void log(level lvl = level::debug, std::string msg = "" , std::string arg = "");
+	//void log(std::string msg);
 
-	std::string get_level(level lvl);
+	void log(log_level::level lvl, std::string msg = "" , std::string arg = "");
 
 	void debug(std::string msg, std::string arg = "");
 
