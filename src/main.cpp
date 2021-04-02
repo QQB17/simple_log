@@ -1,7 +1,8 @@
 #include <iostream>
 #include "logger.h"
 
-int main() {
+int main() 
+{
     // Simple log message
     qlog::log("Hello world!");
 

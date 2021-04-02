@@ -7,7 +7,8 @@
 
 namespace qlog {
 
-	void log(const std::string& msg) {
+	void log(const std::string& msg) 
+	{
 		std::string cur_lvl = log_level::get_level(log_level::setting_level);
 
 		log_time* l_time = new log_time();
@@ -20,7 +21,8 @@ namespace qlog {
 		log_file::write_log(ss.str());
 	}
 
-	void log(const log_level::level& lvl, const std::string& msg, const std::string& arg) {
+	void log(const log_level::level& lvl, const std::string& msg, const std::string& arg) 
+	{
 		if (lvl < log_level::setting_level) return;
 		std::string cur_lvl = log_level::get_level(lvl);
 
@@ -35,23 +37,28 @@ namespace qlog {
 		
 	}
 
-	void debug(const std::string& msg, const std::string& arg) {
+	void debug(const std::string& msg, const std::string& arg) 
+	{
 		log(log_level::level::debug, msg, arg);
 	}
 
-	void info(const std::string& msg, const std::string& arg) {
+	void info(const std::string& msg, const std::string& arg) 
+	{
 		log(log_level::level::info, msg, arg);
 	}
 
-	void warn(const std::string& msg, const std::string& arg) {
+	void warn(const std::string& msg, const std::string& arg) 
+	{
 		log(log_level::level::warn, msg, arg);
 	}
 
-	void error(const std::string& msg, const std::string& arg) {
+	void error(const std::string& msg, const std::string& arg) 
+	{
 		log(log_level::level::error, msg, arg);
 	}
 	
-	void critical(const std::string& msg, const std::string& arg) {
+	void critical(const std::string& msg, const std::string& arg) 
+	{
 		log(log_level::level::critical, msg, arg);
 	}
 
