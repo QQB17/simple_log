@@ -2,11 +2,11 @@
 
 #include <string>
 
-
 namespace log_level {
-	enum class level { debug, info, warn, error, critical };
+
+	enum class level {debug , info, warn, error, critical };
 	
-	extern level default_level;
+	extern level setting_level;
 
 	std::string get_level(level lvl);
 	

@@ -1,7 +1,8 @@
 #include "log_level.h"
 
 namespace log_level {
-	level default_level = level::debug;
+
+	level setting_level = level::debug;
 
 	std::string get_level(level lvl) {
 		switch (lvl)
@@ -27,6 +28,6 @@ namespace log_level {
 	}
 
 	void set_level(level lvl) {
-		default_level = lvl;
+		setting_level = lvl;
 	}
 }

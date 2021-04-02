@@ -4,7 +4,7 @@
 
 namespace qlog { 
 
-	//void log(std::string msg);
+	void log(std::string msg);
 
 	void log(log_level::level lvl, std::string msg = "" , std::string arg = "");
 
@@ -17,7 +17,5 @@ namespace qlog {
 	void error(std::string msg, std::string arg = "");
 
 	void critical(std::string msg, std::string arg = "");
-
-
 };
 

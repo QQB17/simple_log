@@ -1,4 +1,7 @@
+#include <chrono>
+
 #include "log_time.h"
+
 
 std::string log_time::display_time() {
 	using namespace std::chrono;
@@ -11,7 +14,7 @@ std::string log_time::display_time() {
 	size_t round_cur_ms = cur_ms.count() % 1000 ;
 	std::string ms  = std::to_string(round_cur_ms);
 
-	strftime(t_str, sizeof(t_str), "%Y-%m-%d %H:%M:%S.", &info_time);	
+	strftime(t_str, sizeof(t_str), "%Y-%m-%d %H:%M:%S.", &info_time);
 	return (t_str + ms);
 }
 
