@@ -3,10 +3,9 @@
 #include "log_time.h"
 
 
-std::string log_time::display_time() {
+const std::string log_time::display_time() 
+{
 	using namespace std::chrono;
-
-	memset(t_str, 0, sizeof(t_str));
 	time(&cur_time);
 	localtime_s(&info_time, &cur_time);
 

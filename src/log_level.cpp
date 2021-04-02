@@ -1,10 +1,12 @@
 #include "log_level.h"
 
-namespace log_level {
+namespace log_level 
+{
 
 	level setting_level = level::debug;
 
-	std::string get_level(level lvl) {
+	std::string get_level(const level& lvl) 
+	{
 		switch (lvl)
 		{
 		case level::debug:
@@ -27,7 +29,8 @@ namespace log_level {
 		}
 	}
 
-	void set_level(level lvl) {
+	void set_level(const level& lvl) 
+	{
 		setting_level = lvl;
 	}
 }
